@@ -37,10 +37,9 @@ int lcd;
 int main()
 {
 	wiringPiSetup();
-	 if(lcd = lcdInit(2, 16, 4, LCD_RS, LCD_E, LCD_D4, 
-	LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0)){
+	 if(lcd = lcdInit(2, 16, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0)){
 	 printf ("lcdInit nije uspeo! \n");
-	 return -1 ;
+	 return -1;
 	 }
 	 int uptimeTimer;
 	 while(1){
@@ -67,8 +66,7 @@ void memory(void)
 	 {
 		 fscanf(mem_file,"%*s%s%*s", MemTotal);
 		 fscanf(mem_file,"%*s%s%*s", MemFree);
-		 printf("\x1B[2J");//brisanje ekrana
-		lcdPosition(lcd,0,0);
+		 printf("\x1B[2J");//brisanje ekrana lcdPosition(lcd,0,0);
 		 lcdPrintf(lcd,"MemTotal-%sk",MemTotal);
 		 lcdPosition(lcd,0,1);
 		 lcdPrintf(lcd,"MemFree -%sk",MemFree);
@@ -76,8 +74,7 @@ void memory(void)
 	 }
 	 else
 	 {
-		printf("Otvaranje fajla \"/proc/meminfo\" nije
-		uspelo!\n");
+		printf("Otvaranje fajla \"/proc/meminfo\" nije	uspelo!\n");
 	 }
 }
 void volume(void)

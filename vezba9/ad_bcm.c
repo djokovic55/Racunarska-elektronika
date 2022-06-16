@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	bcm2835_i2c_set_baudrate(10000); 
 	while(1) 
 	{ 
-		WriteBuf = 0x00; 
+		WriteBuf = 0x00; ls
 		bcm2835_i2c_write_read_rs(&WriteBuf, 1, &ReadBuf0, 1); 
 		bcm2835_i2c_read(&ReadBuf0, 1); 
 		

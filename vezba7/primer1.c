@@ -22,8 +22,7 @@ int main(){
 	int lcd_h;
 	
 	if (wiringPiSetup() < 0){
-		 fprintf (stderr, "Greška pri inicijalizaciji: 
-		%s\n", strerror (errno)) ;
+		 fprintf (stderr, "Greška pri inicijalizaciji: 	%s\n", strerror (errno));
 		 return 1 ;
 	}
 	
@@ -32,7 +31,6 @@ int main(){
 	lcdPrintf(lcd_h,"Displej sa 16 ch");
 	lcdPosition(lcd_h, 0,1);
 	lcdPrintf(lcd_h, "u 2 reda");
-	
 	delay(2000);
 	lcdClear(lcd_h);
 }

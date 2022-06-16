@@ -5,7 +5,7 @@ double temperatura(void) //očitavanje temperature
 {
 	FILE *ft;
 	char tekst[100];
-	ft=fopen("/sys/bus/w1/devices/28-00000cfbb0e4<df2/w1_slave","r");
+	ft=fopen("/sys/bus/w1/devices/28-000007237df2/w1_slave","r");
 	if(ft==NULL) return 0;
 		int i=0;
 	for(i=0;i<22;i++) //samo temperatura 
@@ -20,20 +20,6 @@ double temperatura(void) //očitavanje temperature
 	return tem;
 };
 void zapis(double temp) //log metod
-#include <errno.h>
-#include <wiringPi.h>
-#include <lcd.h>
-
-// dodela vrednosti za konkretne pinove 
-// prema gornjoj tabeli i semi DVK512
-
-const int RS = 3; 
-const int EN = 14; 
-const int D0 = 4; 
-const int D1 = 12; 
-const int D2 = 13; 
-const int D3 = 6; 
-
 {
 	FILE * log;
 	log=fopen("log","a+"); //otvoriti datoteku
@@ -51,14 +37,17 @@ int main(void)
 	
 	if(log==NULL) return 0;
 	
-	fprintf(log, "\n\t\t***Temperatura***\n	Izmerena temperatura = %.3f \xC2\xB0 C\t C\n",	temperatura());
+	fprintf(log, "\n\t\t***Temperatura***\n
+	Izmerena temperatura = %.3f \xC2\xB0 C\t C\n",
+	temperatura());
 	fclose(log);
 	printf("\n\nPočetna Temp = %.3f \xC2\xB0 C", temperatura());
 	while(1)
 	{
 		j++; //broj iteracija
 		clock_gettime(CLOCK_REALTIME, &ts1);
-		printf("\nMerenje br. %d.\tTemp = %.3f 	\xC2\xB0 C", j, temperatura());
+		printf("\nMerenje br. %d.\tTemp = %.3f 
+		\xC2\xB0 C", j, temperatura());
 		clock_gettime(CLOCK_REALTIME, &ts2);
 		//trajanje pojedinacnog //merenja
 		czas = (ts2.tv_nsec - ts1.tv_nsec)/1000000;

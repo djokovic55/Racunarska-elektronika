@@ -4,11 +4,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/fcntl.h>
-int main()
+int main(int argc, char *argv[])
 {
 	int fd = -1, ret;
 	char *tmp1, tmp2[10], ch='t';
-	char devname_head[50] =  "/sys/devices/w1_bus_master1/28-00000cfbb0e4";
+	char devname_head[50] =  "/sys/devices/w1_bus_master1/28-00000";
 	char devname_end[10] = "/w1_slave";
 	char dev_name[100];
 	long value;
@@ -17,7 +17,7 @@ int main()
 	int i,j;
 	
 	strcpy(dev_name, devname_head);
-	
+	strcat(dev_name, argv[1]);
 	strcat(dev_name, devname_end);
 	
 	if ((fd = open(dev_name, O_RDONLY)) < 0)
